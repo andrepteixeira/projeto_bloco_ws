@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ros/projeto_bloco_ws/devel/setup.sh
