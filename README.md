@@ -1,3 +1,3 @@
 # Róbotica com ROS
-## Projeto de bloco de robótica:
+## Projeto de bloco de robótica
 > Drone delivery.
