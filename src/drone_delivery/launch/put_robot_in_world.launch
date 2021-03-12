@@ -4,10 +4,10 @@
     <arg name="robot_name" value="sjtu_drone" />
     <arg name="x" default="0.0" />
     <arg name="y" default="0.0" />
-    <arg name="z" default="2.0" />
+    <arg name="z" default="1.2" />
     <arg name="roll" default="0.0"/>
     <arg name="pitch" default="0.0"/>
-    <arg name="yaw" default="0.0"/>
+    <arg name="yaw" default="-3.141258"/>
 
 
     <include file="$(find spawn_robot_tools_pkg)/launch/spawn_sdf.launch">

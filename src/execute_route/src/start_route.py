@@ -1,26 +1,34 @@
 #!/usr/bin/env python3 
 
 #import library ros 
+from os import truncate
 import rospy 
 from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Quaternion
+from geometry_msgs.msg import Point
 from std_msgs.msg import Empty
 
 
 turn = .5
 
 class AutoFlight():
+    # def callback(dronePose): 
+    #     pose = Pose()
+    #     pose.position.x = dronePose.position.x 
+    #     pose.position.y = dronePose.position.y 
+    #     pose.position.z = dronePose.position.y
 
     def __init__(self):
         self.status = ""
         self.pub_takeoff = rospy.Publisher('/drone/takeoff',Empty,queue_size = 2) #Drone Takeoff
-        self.land_drone = rospy.Publisher('drone/land',Empty,queue_size = 2) #land drone
+        self.land_drone = rospy.Publisher('/drone/land',Empty,queue_size = 2) #land drone
+        self.position = rospy.Subscriber('/drone/gt_pose/position',Point)
+        self.orientation = rospy.Subscriber('/drone/gt_pose/orientation',Quaternion)
         self.vel = rospy.Publisher('/cmd_vel',Twist,queue_size= 2)
         self.Reset = rospy.Publisher('/drone/reset',Empty,queue_size = 2)
         self.rate=rospy.Rate(10)
         self.sleep_mode= rospy.sleep(10)
         #self.Shutdown_mode = rospy.on_shutdown(self.land_drone)
-
-
 
     def Take_off(self):
         self.pub_takeoff.publish(Empty())
@@ -123,48 +131,72 @@ class AutoFlight():
         vel.angular.y = 0
         vel.angular.z = 1*turn
         self.vel.publish(vel)
+    
+    def home():
+        position = Point()
+        position.x = 0.0
+        position.y = 0.0
+        position.z = 1.5
+    
+    # def goRed(self):
+        
+    #     while(self.position.x != 8.0):
+    #         self.foward()
+    #         rospy.sleep(10)
+    #     self.stop()
+    #     rospy.sleep(10)
+    #     while(self.orientation.z != -0.5):
+    #         self.clockwise()
+    #         rospy.sleep(10)
+    #     self.stop()
+    #     rospy.sleep(10)
+    #     while(self.position.z != -6.0):
+    #         self.foward()
+    #         rospy.sleep(10)
+    #     self.stop()
+    #     rospy.sleep(10)
+    #     self.Land()
+    
+    #def green():
+        position = Point()
+        position.x = 8.0
+        position.y = 8.0
+        position.z = 1.5
+
+    def goBlue(self):
+        
+        while(self.position != -8.0):
+            self.foward()
+            rospy.sleep(10)
+        self.stop()
+        rospy.sleep(10)
+        while(self.orientation != 0.0):
+            self.clockwise()
+            rospy.sleep(10)
+        self.stop()
+        #rospy.sleep(10)
+        # while(self.position.z != -6.0):
+        #     self.foward()
+        #     rospy.sleep(10)
+        # self.stop()
+        rospy.sleep(10)
+        self.Land()
+
 
 if __name__== "__main__":
 
     rospy.init_node('pb_drone_node',anonymous=True) #Node Initiaton
     drone = AutoFlight()
-    stop = drone.stop()
-    fly_forward = drone.foward()
-    fly_backward = drone.backward()
-    fly_left = drone.left()
-    fly_right = drone.right()
-    fly_up = drone.up()
-    fly_down = drone.down()
-    fly_clockwise = drone.clockwise()
-    fly_counterclockwise = drone.counterclockwise()
+    
 
     try:
         drone.Take_off()
+        rospy.sleep(10)
 
-        for i in range(7):
-            if i == 0:
-                fly_forward
-            
-            elif i == 1: 
-                fly_counterclockwise
-            
-            elif i == 2:
-                fly_left
+        print(drone.position)
+        
+        drone.goBlue()
 
-            elif i == 3:
-                fly_right
-            
-            elif i == 4:
-                fly_clockwise
-            
-            elif i == 5:
-                fly_up
-            
-            elif i == 6:
-                fly_down
-
-            else:
-                drone.Land()
         
     except rospy.ROSInterruptException: 
         pass
