@@ -3,8 +3,8 @@
    
     <arg name="K_eu" default="0.25" />
     <arg name="K_ev" default="0.25" />
-    <arg name="X_goal" default="-8.00000" />
-    <arg name="Y_goal" default="0.000000" />
+    <arg name="X_goal" default="320" />
+    <arg name="Y_goal" default="780" />
     <arg name="max_lin" default="0.5" />
     <arg name="max_ang" default="0.5" />   
     <arg name="control_type" default="0"/>
