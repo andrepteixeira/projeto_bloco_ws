@@ -133,6 +133,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/ros/projeto_bloco_ws/build/gtest/cmake_install.cmake")
   include("/home/ros/projeto_bloco_ws/build/drone_delivery/cmake_install.cmake")
   include("/home/ros/projeto_bloco_ws/build/execute_route/cmake_install.cmake")
+  include("/home/ros/projeto_bloco_ws/build/infnet/cmake_install.cmake")
   include("/home/ros/projeto_bloco_ws/build/sjtu-drone/cmake_install.cmake")
   include("/home/ros/projeto_bloco_ws/build/spawn_robot_tools/spawn_robot_tools_pkg/cmake_install.cmake")
 

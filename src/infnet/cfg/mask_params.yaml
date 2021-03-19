@@ -1,0 +1,10 @@
+num_masks: 3
+mask_1:
+  low: [60, 0, 0]
+  high: [255, 0, 0]
+mask_2:
+  low: [0, 60, 0]
+  high: [0, 255, 0]
+mask_3:
+  low: [0, 0, 60]
+  high: [0, 0, 255]

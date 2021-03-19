@@ -7,5 +7,6 @@
 subdirs("gtest")
 subdirs("drone_delivery")
 subdirs("execute_route")
+subdirs("infnet")
 subdirs("sjtu-drone")
 subdirs("spawn_robot_tools/spawn_robot_tools_pkg")

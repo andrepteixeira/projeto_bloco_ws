@@ -68,18 +68,6 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
 # Special rule for the target list_install_components
 list_install_components:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
@@ -89,6 +77,17 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -100,6 +99,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -113,27 +123,17 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -198,34 +198,184 @@ spawn_drone/fast:
 .PHONY : spawn_drone/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+sjtu-drone/CMakeFiles/drone_keyboard.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/drone_keyboard.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/drone_keyboard.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_py: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+drone_keyboard: sjtu-drone/CMakeFiles/drone_keyboard.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_py
+.PHONY : drone_keyboard
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
+drone_keyboard/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/drone_keyboard.dir/build.make sjtu-drone/CMakeFiles/drone_keyboard.dir/build
+.PHONY : drone_keyboard/fast
 
 # Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_lisp: sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+sensor_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : roscpp_generate_messages_lisp
+.PHONY : sensor_msgs_generate_messages_cpp
 
 # fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
+
+# Convenience name for target.
+plugin_ros_init: sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
+
+.PHONY : plugin_ros_init
+
+# fast build rule for target.
+plugin_ros_init/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_init.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_init.dir/build
+.PHONY : plugin_ros_init/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+
+# Convenience name for target.
+plugin_ros_cam: sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
+
+.PHONY : plugin_ros_cam
+
+# fast build rule for target.
+plugin_ros_cam/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build
+.PHONY : plugin_ros_cam/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
+
+# Convenience name for target.
+plugin_ros_imu: sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
+
+.PHONY : plugin_ros_imu
+
+# fast build rule for target.
+plugin_ros_imu/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_imu.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_imu.dir/build
+.PHONY : plugin_ros_imu/fast
+
+# Convenience name for target.
+sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
@@ -271,381 +421,6 @@ plugin_drone: sjtu-drone/CMakeFiles/plugin_drone.dir/rule
 plugin_drone/fast:
 	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_drone.dir/build.make sjtu-drone/CMakeFiles/plugin_drone.dir/build
 .PHONY : plugin_drone/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_lisp
-
-# fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
-
-# Convenience name for target.
-plugin_ros_imu: sjtu-drone/CMakeFiles/plugin_ros_imu.dir/rule
-
-.PHONY : plugin_ros_imu
-
-# fast build rule for target.
-plugin_ros_imu/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_imu.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_imu.dir/build
-.PHONY : plugin_ros_imu/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
-
-# Convenience name for target.
-plugin_ros_cam: sjtu-drone/CMakeFiles/plugin_ros_cam.dir/rule
-
-.PHONY : plugin_ros_cam
-
-# fast build rule for target.
-plugin_ros_cam/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_cam.dir/build
-.PHONY : plugin_ros_cam/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/drone_keyboard.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/drone_keyboard.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/drone_keyboard.dir/rule
-
-# Convenience name for target.
-drone_keyboard: sjtu-drone/CMakeFiles/drone_keyboard.dir/rule
-
-.PHONY : drone_keyboard
-
-# fast build rule for target.
-drone_keyboard/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/drone_keyboard.dir/build.make sjtu-drone/CMakeFiles/drone_keyboard.dir/build
-.PHONY : drone_keyboard/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_eus
-
-# fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_lisp: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_py: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_py: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_py
-
-# fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-sensor_msgs_generate_messages_cpp: sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make sjtu-drone/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make sjtu-drone/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-geometry_msgs_generate_messages_eus: sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
-
-.PHONY : geometry_msgs_generate_messages_eus
-
-# fast build rule for target.
-geometry_msgs_generate_messages_eus/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make sjtu-drone/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
-.PHONY : geometry_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f CMakeFiles/Makefile2 sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
-.PHONY : sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
-
-# Convenience name for target.
-plugin_ros_init: sjtu-drone/CMakeFiles/plugin_ros_init.dir/rule
-
-.PHONY : plugin_ros_init
-
-# fast build rule for target.
-plugin_ros_init/fast:
-	cd /home/ros/projeto_bloco_ws/build && $(MAKE) -f sjtu-drone/CMakeFiles/plugin_ros_init.dir/build.make sjtu-drone/CMakeFiles/plugin_ros_init.dir/build
-.PHONY : plugin_ros_init/fast
 
 # Convenience name for target.
 sjtu-drone/CMakeFiles/plugin_ros_sonar_autogen.dir/rule:
@@ -1050,44 +825,29 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
-	@echo "... install"
 	@echo "... list_install_components"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... plugin_ros_sonar"
 	@echo "... spawn_drone"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... roscpp_generate_messages_lisp"
+	@echo "... drone_keyboard"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... install/local"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... install"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... plugin_ros_init"
+	@echo "... plugin_ros_cam"
+	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... plugin_ros_imu"
+	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_nodejs"
 	@echo "... plugin_drone"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... install/local"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... test"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... plugin_ros_imu"
-	@echo "... plugin_ros_cam"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... drone_keyboard"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... rebuild_cache"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_py"
-	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... geometry_msgs_generate_messages_eus"
-	@echo "... plugin_ros_init"
 	@echo "... plugin_ros_sonar_autogen"
 	@echo "... spawn_drone_autogen"
 	@echo "... drone_keyboard_autogen"
