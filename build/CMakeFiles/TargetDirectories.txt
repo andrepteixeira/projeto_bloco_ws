@@ -43,13 +43,6 @@
 /home/ros/projeto_bloco_ws/build/drone_delivery/CMakeFiles/edit_cache.dir
 /home/ros/projeto_bloco_ws/build/drone_delivery/CMakeFiles/test.dir
 /home/ros/projeto_bloco_ws/build/drone_delivery/CMakeFiles/_catkin_empty_exported_target.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/install/strip.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/install/local.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/install.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/list_install_components.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/rebuild_cache.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/edit_cache.dir
-/home/ros/projeto_bloco_ws/build/execute_route/CMakeFiles/test.dir
 /home/ros/projeto_bloco_ws/build/infnet/CMakeFiles/install/local.dir
 /home/ros/projeto_bloco_ws/build/infnet/CMakeFiles/rebuild_cache.dir
 /home/ros/projeto_bloco_ws/build/infnet/CMakeFiles/edit_cache.dir

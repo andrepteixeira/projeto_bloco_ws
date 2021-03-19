@@ -55,7 +55,6 @@ CMAKE_BINARY_DIR = /home/ros/projeto_bloco_ws/build
 # The main recursive "all" target.
 all: gtest/all
 all: drone_delivery/all
-all: execute_route/all
 all: infnet/all
 all: sjtu-drone/all
 all: spawn_robot_tools/spawn_robot_tools_pkg/all
@@ -65,7 +64,6 @@ all: spawn_robot_tools/spawn_robot_tools_pkg/all
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: drone_delivery/preinstall
-preinstall: execute_route/preinstall
 preinstall: infnet/preinstall
 preinstall: sjtu-drone/preinstall
 preinstall: spawn_robot_tools/spawn_robot_tools_pkg/preinstall
@@ -80,7 +78,6 @@ clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: drone_delivery/clean
-clean: execute_route/clean
 clean: infnet/clean
 clean: sjtu-drone/clean
 clean: spawn_robot_tools/spawn_robot_tools_pkg/clean
@@ -104,24 +101,6 @@ drone_delivery/preinstall:
 drone_delivery/clean: drone_delivery/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 .PHONY : drone_delivery/clean
-
-#=============================================================================
-# Directory level rules for directory execute_route
-
-# Recursive "all" directory target.
-execute_route/all:
-
-.PHONY : execute_route/all
-
-# Recursive "preinstall" directory target.
-execute_route/preinstall:
-
-.PHONY : execute_route/preinstall
-
-# Recursive "clean" directory target.
-execute_route/clean:
-
-.PHONY : execute_route/clean
 
 #=============================================================================
 # Directory level rules for directory gtest

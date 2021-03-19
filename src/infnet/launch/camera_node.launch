@@ -5,7 +5,7 @@
 
    
     <node name="camera_node" 
-        pkg="turtle_infnet" 
+        pkg="infnet" 
         type="camera_node.py"
         args="$(arg video)"
         output="screen">

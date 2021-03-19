@@ -1,2 +1,2 @@
-drone_delivery:execute_route:infnet:sjtu-drone:spawn_robot_tools/spawn_robot_tools_pkg
+drone_delivery:infnet:sjtu-drone:spawn_robot_tools/spawn_robot_tools_pkg
 -DCATKIN_DEVEL_PREFIX=/home/ros/projeto_bloco_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros/projeto_bloco_ws/install -G Unix Makefiles

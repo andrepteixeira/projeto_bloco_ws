@@ -80,7 +80,7 @@ def callback_img_point(msg):
 def callback_odom(msg):
    
     global robot_pose
-    
+    print(msg)
     robot_pose.x = round(msg.position.x, 3)
     robot_pose.y = round(msg.position.y, 3)
     

@@ -53,7 +53,7 @@ def camera_main():
     rospy.init_node('camera_node', anonymous=True)    # node name
     
    # Publishers
-    pub_image = rospy.Publisher('image_raw', Image, queue_size=10)  # send control signals
+    pub_image = rospy.Publisher('/drone/front_camera/image_raw', Image, queue_size=10)  # send control signals
 
     # control rate
     rate = rospy.Rate(30)   # run the node at 15H
